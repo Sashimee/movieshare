@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.output/
+.wxt/
+.wrangler/
+coverage/
+playwright-report/
+test-results/
+*.log
+.env
+.env.*
+!.env.example
+.dev.vars
+.DS_Store
+.claude/worktrees/
+.claude/settings.local.json
