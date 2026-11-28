@@ -20,7 +20,7 @@ A free watch-party tool: everyone opens the same title on their own streaming ac
 | Webcam layout | Floating tiles and a sidebar, switchable by the user. | Alex's choice. Floating tiles are the fallback in fullscreen. |
 | Room size | Up to 6. | The practical limit of a free peer-to-peer mesh. |
 | Networks where peer to peer fails | No relay. Those pairs keep sync and chat but do not see each other's webcam, and the UI says so. | Zero infrastructure and zero cost. Roughly one in ten connections is affected. |
-| Where does the room server run? | A Node WebSocket server in Docker on Alex's Dokploy server, built by Dokploy from this repo's `main`, reachable on a subdomain of Alex's domain. | Alex's choice. No third party. |
+| Where does the room server run? | A Node WebSocket server in Docker on Alex's Dokploy server, on the shared Dokploy instance `dok.seil.pro`, built from this repo's `main`, reachable on a subdomain of Alex's domain. Set up through the Dokploy API (#40). | Alex's choice. No third party. |
 | Accounts? | None. A room is an unguessable invite link and a display name. | Nothing to store, nothing to leak. |
 | Distribution | Chrome Web Store, Edge Add-ons and a zip on GitHub Releases. | Stores are the only install path normal users manage. |
 | Languages | English only; strings kept in one module. | Can be extended later. |
@@ -40,6 +40,7 @@ Each milestone is a GitHub milestone; each line is an issue.
 - #4 Sync-core state machine with clock offset and drift correction
 - #5 Node WebSocket room server
 - #6 Room lifecycle: invite links, control mode, reconnect
+- #34 Dockerfile and Dokploy deployment guide
 
 ### M2 Extension MVP
 - #7 Extension shell with WXT for Chromium
@@ -75,8 +76,8 @@ Outcome: two people open the same video, share a link, and playback stays in syn
 - #24 Privacy policy and permission justifications
 - #25 Release pipeline
 - #26 Landing page on GitHub Pages with invite-link handler
-- #34 Dockerfile and Dokploy deployment guide
-- #36 Alex: create the Dokploy application and point a subdomain at it
+- #36 Alex: pick the room server hostname and point its DNS at the Dokploy server
+- #40 Deploy the room server on Dokploy through its API
 - #37 Alex: store developer accounts and upload secrets
 - #35 Set the production server URL and cut v0.1.0
 
