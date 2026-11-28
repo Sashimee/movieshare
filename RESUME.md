@@ -1,6 +1,6 @@
 # Resume state
 
-Updated 2026-11-21.
+Updated 2026-11-28.
 
 ## Goal
 
@@ -8,7 +8,7 @@ Build MovieShare: a free browser extension that syncs playback across streaming 
 
 ## Status
 
-- **Done:** public repo created, `main` and `dev` pushed (`dev` is the default branch), plan and architecture written, 8 project agents in `.claude/agents/`, milestones M0 to M6 and issues #1 to #27 filed, progress dashboard published.
+- **Done:** public repo created, `main` and `dev` pushed (`dev` is the default branch), plan and architecture written, 8 project agents in `.claude/agents/`, milestones M0 to M6 and issues #1 to #27 filed, progress dashboard published, MIT licence added, M4 order set (Netflix and YouTube first).
 - **In progress:** nothing. No code exists yet.
 - **Next:** #1 (scaffold pnpm workspace and `pnpm check`), then #2 (CI). After #1, replace the planned commands in `CLAUDE.md` and the agent files with the real ones.
 
@@ -27,11 +27,7 @@ Build MovieShare: a free browser extension that syncs playback across streaming 
 
 ## Blockers
 
-Open questions for Alex (also in `docs/PLAN.md`):
-
-- Licence for the public repo.
-- Which streaming platforms he has accounts on (sets the adapter order in M4; real-platform tests are manual and need two accounts).
-- Safari is not planned.
+None. Decided on 2026-11-28: MIT licence; Alex has Netflix and YouTube Premium (one account each), so #17 and #18 are the only adapters verified on real sites. Disney+, Prime Video and Max stay fixture-only and unverified. See "Platform testing" in `docs/PLAN.md`.
 
 ## Files
 
