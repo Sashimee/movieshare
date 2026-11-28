@@ -24,7 +24,12 @@ const release = () => {
 const limited = async (prompt, opts) => {
   await acquire()
   try {
-    return await agent(prompt, opts)
+    return await agent(prompt, opts).catch((error) => {
+      // Agent files added after the session started are missing from its registry until a restart.
+      if (!/agent type .* not found/.test(String(error && error.message))) throw error
+      log(`${opts.agentType} is not registered in this session, running it as general-purpose from its agent file`)
+      return agent(`Your role is defined in .claude/agents/${opts.agentType}.md. Read that file first and follow it as your instructions.\n\n${prompt}`, { ...opts, agentType: 'general-purpose' })
+    })
   } finally {
     release()
   }
