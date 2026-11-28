@@ -80,8 +80,25 @@ M0 → M1 → M2 are strictly sequential. After M2, M3 (webcam) and M4 (adapters
 - **Testing platform adapters needs paid accounts** on each service, two of them for a real sync test. These tests are manual; CI covers fixtures only.
 - **TURN cost.** If free relay capacity runs out, relayed calls degrade to audio or are refused, never billed.
 
+## Platform testing
+
+Alex has Netflix and YouTube Premium, one account each. That sets the order inside M4:
+
+1. #16 contract tests and fixtures
+2. #17 Netflix and #18 YouTube, verified on the real sites
+3. #23 same-title check and ad or buffering waits
+4. #19 Disney+, #20 Prime Video, #21 Max, #22 long tail: built against fixtures only, marked unverified in `docs/PLATFORMS.md` until someone with accounts tests them
+
+Notes for the real-site tests:
+
+- Two-client tests use the same account in two browser profiles. Whether Netflix allows two simultaneous streams depends on the plan tier; if it does not, the second client needs a second account.
+- YouTube Premium shows no ads, so the ad wait in #18 is tested in a signed-out profile.
+
+## Decided
+
+- Licence: MIT.
+- Safari: not planned. It needs a Mac and a paid Apple developer account.
+
 ## Open questions for Alex
 
-- Licence for the public repo (none chosen yet; MIT or GPL-3.0 are the usual picks).
-- Which platforms do you have accounts on? That sets the order inside M4.
-- Safari support: needs a Mac and a paid Apple developer account. Not planned.
+None.
