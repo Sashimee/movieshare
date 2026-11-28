@@ -34,10 +34,11 @@
     {"issue": 24, "milestone": "M5", "agent": "site-writer", "model": "sonnet", "human": false, "deps": [32], "owns": ["apps/site/privacy", "docs/store"], "reviews": ["privacy"]},
     {"issue": 25, "milestone": "M5", "agent": "tooling-engineer", "model": "sonnet", "human": false, "deps": [2, 7], "owns": [".github/workflows/release.yml", "scripts/release"], "reviews": ["privacy"]},
     {"issue": 26, "milestone": "M5", "agent": "site-writer", "model": "sonnet", "human": false, "deps": [31], "owns": ["apps/site", ".github/workflows/pages.yml", "apps/extension/entrypoints/invite"], "reviews": ["privacy"]},
-    {"issue": 34, "milestone": "M5", "agent": "signaling-server", "model": "sonnet", "human": false, "deps": [6], "owns": ["apps/signaling/Dockerfile", ".dockerignore", "docs/DEPLOY.md"], "reviews": ["privacy"]},
-    {"issue": 36, "milestone": "M5", "agent": null, "model": null, "human": true, "deps": [34], "owns": [], "reviews": []},
+    {"issue": 34, "milestone": "M1", "agent": "signaling-server", "model": "sonnet", "human": false, "deps": [6], "owns": ["apps/signaling/Dockerfile", ".dockerignore", "docs/DEPLOY.md"], "reviews": ["privacy"]},
+    {"issue": 36, "milestone": "M5", "agent": null, "model": null, "human": true, "deps": [], "owns": [], "reviews": []},
     {"issue": 37, "milestone": "M5", "agent": null, "model": null, "human": true, "deps": [25], "owns": [], "reviews": []},
-    {"issue": 35, "milestone": "M5", "agent": "tooling-engineer", "model": "sonnet", "human": false, "deps": [14, 17, 18, 23, 24, 25, 26, 30, 33, 34, 36], "owns": ["."], "reviews": ["privacy"]},
+    {"issue": 40, "milestone": "M5", "agent": "dokploy-deployer", "model": "opus", "human": false, "deps": [4, 6, 34, 36], "owns": ["docs/DEPLOY.md"], "reviews": ["privacy"]},
+    {"issue": 35, "milestone": "M5", "agent": "tooling-engineer", "model": "sonnet", "human": false, "deps": [14, 17, 18, 23, 24, 25, 26, 30, 33, 34, 40], "owns": ["."], "reviews": ["privacy"]},
     {"issue": 27, "milestone": "M6", "agent": "feasibility-researcher", "model": "opus", "human": false, "deps": [33], "owns": ["docs/DESKTOP.md"], "reviews": []}
   ]
 }

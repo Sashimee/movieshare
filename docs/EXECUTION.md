@@ -10,7 +10,8 @@ How the roadmap in `docs/PLAN.md` gets built by agents working in parallel. The 
 - **UI against mocks, integration as its own task.** Components (#10, #13, #15, #30) and libraries (#9, #12) are built and tested in isolation; #31 and #32 wire them together. That keeps the long chain short and the wide part wide.
 - **One worktree and one branch per agent.** Nobody works in the main checkout.
 - **Parallel build, serial merge.** Builds and reviews run up to 6 at a time. Merges go through one integrator at a time, which updates the branch with `dev`, runs the full `pnpm check` and squash-merges. Only the integrator runs the full check, so memory use stays bounded.
-- **Human steps never block unrelated work.** They are issues labelled `needs-alex`; only the final release (#35) depends on one.
+- **Human steps never block unrelated work.** They are issues labelled `needs-alex`. The only one on the path to the release is #36 (a hostname and a DNS record), which can be done at any time.
+- **Deployment is a task too.** #40 creates and deploys the room server through the Dokploy API once M1 is released to `main` and #36 is done.
 
 ## Expected waves
 
@@ -22,11 +23,12 @@ From a dry run of the graph. Real waves can differ when a task fails and is retr
 | 2 | #2 #3 #7 #8 | CI, protocol, extension shell, generic adapter |
 | 3 | #4 #5 #10 #12 #16 #25 | Sync core, room server, UI, WebRTC mesh, adapter registry, release pipeline |
 | 4 | #6 #9 #13 #14 #15 #17 #18 #19 #20 #21 #22 | Room rules, room client, tiles, chat, all site adapters |
-| 5 | #30 #31 #34 | Sidebar, working synced playback in the extension, Docker image |
+| 5 | #30 #31 #34 | Sidebar, working synced playback in the extension, Docker image; M1 released to `main` |
+| after 5 | #40 | Room server live on Dokploy (needs #36 from Alex) |
 | 6 | #11 #23 #26 #32 | E2E sync test, same-title check, landing page, webcam and chat integrated |
 | 7 | #24 #33 | Privacy policy, e2e webcam test |
 | 8 | #27 | Desktop feasibility write-up |
-| Alex | #36 #37 #38 | Dokploy app and subdomain, store accounts, real-site check |
+| Alex | #36 #37 #38 | Hostname and DNS record, store accounts, real-site check |
 | 9 | #35 | v0.1.0 |
 
 ## Agents and models
@@ -44,6 +46,7 @@ Models are set in `.claude/agents/*.md` and passed again explicitly per task by 
 | `e2e-tester` | sonnet | #11 #33 |
 | `site-writer` | sonnet | #24 #26 |
 | `feasibility-researcher` | opus | #27 |
+| `dokploy-deployer` | opus | #40 |
 | `privacy-reviewer` | opus | reviews PRs touching permissions, server, WebRTC, adapters, release |
 | `correctness-reviewer` | opus | reviews sync, protocol, room, WebRTC and integration PRs |
 | `integrator` | opus | merges every PR, one at a time |
@@ -88,6 +91,6 @@ One iteration of the `/loop`. Do these in order.
 
 | Issue | Step | Unblocks |
 | --- | --- | --- |
-| #36 | Create the Dokploy application from this repo and point a subdomain at it (guide: `docs/DEPLOY.md`, written by #34) | #35 release |
+| #36 | Pick the room server hostname and point its DNS at the Dokploy server. Can be done right away. | #40 deployment, then #35 release |
 | #37 | Chrome Web Store and Edge Add-ons developer accounts, upload secrets | Store upload in the release workflow |
 | #38 | Try Netflix and YouTube on the real sites with the built extension | Marks those adapters as verified |

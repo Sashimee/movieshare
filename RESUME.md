@@ -8,7 +8,7 @@ Build MovieShare: a free Chromium extension that syncs playback across streaming
 
 ## Status
 
-- **Done:** repo, plan, architecture, 13 project agents, 36 issues (#1 to #27, #30 to #38) in milestones M0 to M6, task graph (`docs/tasks.json`), wave planner (`scripts/next-wave.mjs`), build workflow (`.claude/workflows/build-wave.js`), dashboard.
+- **Done:** repo, plan, architecture, 14 project agents, 37 issues (#1 to #27, #30 to #38, #40) in milestones M0 to M6, task graph (`docs/tasks.json`), wave planner (`scripts/next-wave.mjs`), build workflow (`.claude/workflows/build-wave.js`), dashboard.
 - **In progress:** nothing. No product code exists yet. No wave has run.
 - **Next:** run the loop. Follow "Loop iteration" in `docs/EXECUTION.md`. First wave is #1 alone.
 
@@ -36,7 +36,7 @@ Build MovieShare: a free Chromium extension that syncs playback across streaming
 
 None for the loop. Waiting on Alex later, each only once its dependencies are merged:
 
-- #36 create the Dokploy application and point a subdomain at it (after #34; blocks the v0.1.0 release #35)
+- #36 pick the room server hostname and point its DNS at the Dokploy server (can be done now; blocks the deployment #40 and so the v0.1.0 release #35). The Dokploy application itself is created through the API by #40; the key is outside the repo in `~/.config/dokploy/seil.token`.
 - #37 store developer accounts and upload secrets (after #25)
 - #38 try Netflix and YouTube on the real sites (after #17, #18, #32)
 

@@ -51,6 +51,7 @@ Defined by #1; update this section and the agents when they exist.
 | `e2e-tester` | Playwright two-browser tests |
 | `site-writer` | Landing page, privacy policy, store texts |
 | `feasibility-researcher` | Desktop-app write-up |
+| `dokploy-deployer` | Deploy the room server on Dokploy through its API |
 | `privacy-reviewer` | Review a diff against the hard rules and store policy |
 | `correctness-reviewer` | Independent logic review of a PR |
 | `integrator` | Merge one PR into `dev`, one at a time |
