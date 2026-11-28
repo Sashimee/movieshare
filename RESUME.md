@@ -22,7 +22,7 @@ Build MovieShare: a free Chromium extension that syncs playback across streaming
 
 - Branch flow: `feat/<issue>-<slug>` → `dev` → `main`. `dev` is released to `main` with a `release: <milestone>` PR after each completed milestone.
 - Head of `dev`: `git log --oneline -1 origin/dev`. `main` holds only the root commit until M0 is released.
-- Open PRs: none. Closed issues: none.
+- Open PRs: none. Closed issues: #36 (room server hostname is `tele.bas.lu`, DNS points at the Dokploy server; #40 deploys there through the API, key outside the repo in `~/.config/dokploy/seil.token`).
 - Waves run: 0 (log in `docs/waves.jsonl`).
 - Checks: none exist yet. `pnpm check` is created by #1, CI by #2.
 
@@ -36,7 +36,6 @@ Build MovieShare: a free Chromium extension that syncs playback across streaming
 
 None for the loop. Waiting on Alex later, each only once its dependencies are merged:
 
-- #36 pick the room server hostname and point its DNS at the Dokploy server (can be done now; blocks the deployment #40 and so the v0.1.0 release #35). The Dokploy application itself is created through the API by #40; the key is outside the repo in `~/.config/dokploy/seil.token`.
 - #37 store developer accounts and upload secrets (after #25)
 - #38 try Netflix and YouTube on the real sites (after #17, #18, #32)
 
