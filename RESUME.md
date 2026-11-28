@@ -4,34 +4,47 @@ Updated 2026-11-28.
 
 ## Goal
 
-Build MovieShare: a free browser extension that syncs playback across streaming platforms and shares webcams peer to peer. Full plan in `docs/PLAN.md`, design in `docs/ARCHITECTURE.md`.
+Build MovieShare: a free Chromium extension that syncs playback across streaming platforms and shares webcams, voice, chat and reactions peer to peer. Plan in `docs/PLAN.md`, design in `docs/ARCHITECTURE.md`, build procedure in `docs/EXECUTION.md`.
 
 ## Status
 
-- **Done:** public repo created, `main` and `dev` pushed (`dev` is the default branch), plan and architecture written, 8 project agents in `.claude/agents/`, milestones M0 to M6 and issues #1 to #27 filed, progress dashboard published, MIT licence added, M4 order set (Netflix and YouTube first).
-- **In progress:** nothing. No code exists yet.
-- **Next:** #1 (scaffold pnpm workspace and `pnpm check`), then #2 (CI). After #1, replace the planned commands in `CLAUDE.md` and the agent files with the real ones.
+- **Done:** repo, plan, architecture, 13 project agents, 36 issues (#1 to #27, #30 to #38) in milestones M0 to M6, task graph (`docs/tasks.json`), wave planner (`scripts/next-wave.mjs`), build workflow (`.claude/workflows/build-wave.js`), dashboard.
+- **In progress:** nothing. No product code exists yet. No wave has run.
+- **Next:** run the loop. Follow "Loop iteration" in `docs/EXECUTION.md`. First wave is #1 alone.
+
+## How to continue
+
+```
+/loop Use a workflow to execute the MovieShare plan: follow "Loop iteration" in docs/EXECUTION.md exactly. Each iteration: reconcile RESUME.md with git and gh, run node scripts/next-wave.mjs, run the build-wave workflow (.claude/workflows/build-wave.js) with its workflowArgs (at most 6 agents), handle failures, release finished milestones to main, record the wave, refresh the dashboard. End only when next-wave reports finished; while only tasks waiting on me remain, keep checking hourly.
+```
 
 ## State
 
-- Branch flow: `feat/<issue>-<slug>` → `dev` → `main`. `main` holds only the root commit until Alex asks for a release merge.
-- Head of `dev`: check `git log --oneline -1 origin/dev`.
-- Open PRs: none. Open issues: #1 to #27.
-- Checks: none exist yet (`pnpm check` is defined by #1).
+- Branch flow: `feat/<issue>-<slug>` → `dev` → `main`. `dev` is released to `main` with a `release: <milestone>` PR after each completed milestone.
+- Head of `dev`: `git log --oneline -1 origin/dev`. `main` holds only the root commit until M0 is released.
+- Open PRs: none. Closed issues: none.
+- Waves run: 0 (log in `docs/waves.jsonl`).
+- Checks: none exist yet. `pnpm check` is created by #1, CI by #2.
 
 ## Dashboard
 
 - URL: https://claude.ai/artifact/E6KRSocuYa5NRcNCaWh5p6
 - Refresh: `python3 ~/.claude/dashboards/movieshare/build.py`, then publish `~/.claude/dashboards/movieshare/dashboard.html` with the Artifact tool, passing the URL above as `url`.
-- The script reads `gh` issues, PRs, runs, `git log` and the "Open questions for Alex" section of `docs/PLAN.md`. Issues labelled `blocked` or `needs-alex` show as blocked.
+- The script reads `gh` issues, PRs and runs, `git log`, `docs/tasks.json` (dependencies, agents) and `docs/waves.jsonl`.
 
 ## Blockers
 
-None. Decided on 2026-11-28: MIT licence; Alex has Netflix and YouTube Premium (one account each), so #17 and #18 are the only adapters verified on real sites. Disney+, Prime Video and Max stay fixture-only and unverified. See "Platform testing" in `docs/PLAN.md`.
+None for the loop. Waiting on Alex later, each only once its dependencies are merged:
+
+- #36 create the Dokploy application and point a subdomain at it (after #34; blocks the v0.1.0 release #35)
+- #37 store developer accounts and upload secrets (after #25)
+- #38 try Netflix and YouTube on the real sites (after #17, #18, #32)
 
 ## Files
 
-- `docs/PLAN.md`: scope, decisions, milestones, risks
-- `docs/ARCHITECTURE.md`: components, sync model, adapter interface
-- `CLAUDE.md`: hard rules, layout, commands, agents
+- `docs/EXECUTION.md`: concurrency design, loop iteration, rules for task agents
+- `docs/tasks.json`: task graph (issue, agent, model, deps, owned paths, reviews)
+- `scripts/next-wave.mjs`: ready tasks, waiting on Alex, releasable milestones
+- `.claude/workflows/build-wave.js`: build, review, fix, merge for one wave
 - `.claude/agents/*.md`: project agents
+- `docs/PLAN.md`, `docs/ARCHITECTURE.md`, `CLAUDE.md`

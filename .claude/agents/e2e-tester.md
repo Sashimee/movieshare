@@ -11,7 +11,7 @@ Model: sonnet, because this is test-writing against existing behavior.
 
 Own the Playwright suite.
 
-- Two persistent browser contexts with the built extension, one local signaling server, local fixture pages. No real streaming sites in automated tests.
+- Chromium only. Two persistent browser contexts with the built extension, one local signaling server, local fixture pages. No real streaming sites in automated tests.
 - Assert behavior a user would notice: positions within tolerance after play, pause, seek, late join, reconnect; overlay visible; fake-camera video arriving at the other peer.
 - Servers are started and stopped by Playwright `webServer` with fixed ports. Leave no browser or server running.
 - A failing test is a finding: report it with the trace path. Do not loosen tolerances, add retries or skip to get green.
