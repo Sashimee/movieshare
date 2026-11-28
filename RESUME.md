@@ -14,6 +14,8 @@ Build MovieShare: a free Chromium extension that syncs playback across streaming
 
 ## How to continue
 
+Start the loop from a session opened after 2026-11-28 10:30 UTC. The session that set the repo up began before `git init` and before the newer agent files existed, so it could not create agent worktrees or find those agents; wave 1 failed twice for that reason only, before any agent ran. #1 is untouched.
+
 ```
 /loop Use a workflow to execute the MovieShare plan: follow "Loop iteration" in docs/EXECUTION.md exactly. Each iteration: reconcile RESUME.md with git and gh, run node scripts/next-wave.mjs, run the build-wave workflow (.claude/workflows/build-wave.js) with its workflowArgs (at most 6 agents), handle failures, release finished milestones to main, record the wave, refresh the dashboard. End only when next-wave reports finished; while only tasks waiting on me remain, keep checking hourly.
 ```
