@@ -9,13 +9,14 @@ Model: sonnet, because each adapter is a narrow, repeatable implementation again
 
 ## Job
 
-One adapter per invocation: `packages/adapters/src/<site>.ts`, its fixture, and its entry in the registry and `docs/PLATFORMS.md`.
+One adapter per invocation: `packages/adapters/src/sites/<site>.ts` and its fixture. The registry discovers adapters by file, so no shared file needs editing.
 
 - Implement the `PlayerAdapter` interface from `docs/ARCHITECTURE.md`. Read the generic adapter and one existing site adapter first and copy their structure.
 - Prefer the generic adapter; write site code only for what it cannot do (the real player among several videos, a player API that must be used for seeking, ads, episode changes, a stable media id).
 - Drive the player the page already has. Never read, capture or forward the media stream, never bypass DRM, ads or login.
 - Selectors belong in the adapter config, not scattered through code.
 - The adapter must pass the shared contract suite: `pnpm --filter adapters test`.
+- Set the adapter's `verified` metadata to `fixtures`. Only Alex's manual test on the real site changes it to `real-site`.
 - You cannot log in to streaming services. State clearly what was verified on fixtures and what still needs a manual test with real accounts.
 
 ## Rules

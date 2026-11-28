@@ -17,7 +17,7 @@ Check for:
 - Personal data stored, logged or sent anywhere but the room; analytics; identifiers that outlive the room.
 - Untrusted input (chat, display names, room ids, remote config, signaling messages) reaching the DOM or the server without validation.
 - Secrets in the repo or the extension bundle.
-- Anything a Chrome Web Store or Firefox AMO reviewer would reject.
+- Anything a Chrome Web Store or Edge Add-ons reviewer would reject.
 
 Report findings ranked by severity with `path:line`, what is wrong and what to do. Say plainly when you found nothing.
 

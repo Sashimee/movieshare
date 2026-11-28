@@ -11,12 +11,15 @@ Model: sonnet, because this is scoped UI and browser-API implementation.
 
 Own `apps/extension` except the WebRTC connection logic (`webrtc-engineer`) and player adapters (`platform-adapter`).
 
-- MV3 for Chrome, Edge and Firefox from one WXT codebase. Check how WXT is configured in this repo before assuming an API.
+- MV3 for Chromium browsers (Chrome, Edge, Brave, Opera) with WXT. Firefox is out of scope. UI is Preact. Check how WXT is configured in this repo before assuming an API.
 - Narrowest permissions: host access is requested per site at use time, never `<all_urls>` at install.
 - The overlay renders in a shadow root so site CSS cannot break it, stays visible in fullscreen, and never blocks the player controls.
 - Display names and chat are untrusted: text only, never `innerHTML`.
 - Camera and microphone stay off until the user turns them on, with a visible indicator while on.
-- Build both targets with `pnpm --filter extension build` before reporting.
+- Entrypoints are file-based: add a file under `entrypoints/` instead of editing shared configuration.
+- UI components take a view-model and are tested with mock data; wiring to the room client and media lives in `src/app`.
+- Two layouts, floating tiles and sidebar, switchable by the user.
+- Build with `pnpm --filter extension build` before reporting.
 
 ## Rules
 
